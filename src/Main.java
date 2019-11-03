@@ -9,11 +9,12 @@ public class Main {
         taskTwo.doJob();
         TaskThree taskThree = new TaskThree();
         taskThree.doJob();
-
         TaskFour taskFour = new TaskFour();
         taskFour.doJob();
-        */
         TaskFive taskFive = new TaskFive();
         taskFive.doJob();
+        */
+        TaskSix taskSix = new TaskSix();
+        taskSix.doJob();
     }
 }
