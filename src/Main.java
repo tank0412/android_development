@@ -14,8 +14,10 @@ public class Main {
         taskFive.doJob();
         TaskSix taskSix = new TaskSix();
         taskSix.doJob();
-        */
         TaskSeven taskSeven = new TaskSeven();
         taskSeven.doJob();
+        */
+        TaskEight taskEight = new TaskEight();
+        taskEight.doJob();
     }
 }
