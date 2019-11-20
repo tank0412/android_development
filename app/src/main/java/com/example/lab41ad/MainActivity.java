@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickReset(View view) {
-        runnning = false;
+        runnning = true;
         seconds = 0;
 
     }
@@ -68,9 +68,11 @@ public class MainActivity extends AppCompatActivity {
 
             final Runnable r = new Runnable() {
                 public void run() {
-                    Log.i("Main", "run()");
-                    runTimer();
-                    mHandler.postDelayed(this, 1000);
+                    if (MainActivity.runnning) { // мини-костыль пофиксить позже
+                        Log.i("Main", "run()");
+                        runTimer();
+                        mHandler.postDelayed(this, 1000);
+                    }
                 }
             };
 
