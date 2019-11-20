@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
     public void onClickStart(View view) {
         Log.i("Main", "onClickStart");
         runnning = true;
-        //Intent intent = new Intent(this, MyIntentService.class);
-        //startService(intent);
         checkTimer();
 
     }
@@ -43,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickReset(View view) {
         runnning = true;
         seconds = 0;
+        checkTimer(); // работает и так
 
     }
     public void runTimer() {
