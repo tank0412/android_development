@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -11,7 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListAdapter.OnItemClicked {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
         ListAdapter listAdapter = new ListAdapter(prepareData());
         recyclerView.setAdapter(listAdapter);
+
+        listAdapter.setOnClick(MainActivity.this); // Bind the listener
 
     }
     private List<String> prepareData() {
@@ -40,5 +43,13 @@ public class MainActivity extends AppCompatActivity {
         imagesUrlList.add("https://i.imgur.com/uXbb81d.jpg");
         imagesUrlList.add("https://i.imgur.com/92mT0BB.jpg");
         return  imagesUrlList;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        // The onClick implementation of the RecyclerView item click
+        //ur intent code here
+        MediaPlayer mPlayer = MediaPlayer.create(MainActivity.this, R.raw.sound);
+        mPlayer.start();
     }
 }

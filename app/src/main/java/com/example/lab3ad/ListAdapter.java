@@ -24,6 +24,14 @@ public class ListAdapter extends RecyclerView.Adapter {
         this.imagesUrlList = imagesUrlList;
     }
 
+    //declare interface
+    private OnItemClicked onClick;
+
+    //make interface like this
+    public interface OnItemClicked {
+        void onItemClick(int position);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, View.OnClickListener {
 
         public ViewHolder(View view) {
@@ -57,10 +65,23 @@ public class ListAdapter extends RecyclerView.Adapter {
         View v = holder.itemView;
         ImageView image = v.findViewById(R.id.photo);
         Picasso.get().load(imagesUrlList.get(position)).into(image);
+        final int position2 = position;
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.onItemClick(position2);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return imagesUrlList.size();
+    }
+
+    public void setOnClick(OnItemClicked onClick)
+    {
+        this.onClick=onClick;
     }
 }
