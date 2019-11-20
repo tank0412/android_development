@@ -15,6 +15,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public static int seconds;
+    public static int minutes;
+    public static int hours;
     public static boolean runnning = true;
     public static Handler mHandler;
 
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         seconds = 0;
+        minutes = 0;
+        hours = 0;
         Log.i("Main", "Run app");
     }
 
@@ -46,9 +50,27 @@ public class MainActivity extends AppCompatActivity {
     }
     public void runTimer() {
         Log.i("Main", "runTimer()");
-        String timer = "00:00:";
+        String timer = "";
+        if(MainActivity.hours < 10) {
+            timer+="0";
+        }
+        timer+= hours;
+        timer+=":";
+
+        if(MainActivity.minutes < 10) {
+            timer+="0";
+        }
+        timer+= minutes;
+        timer+=":";
+
         if(MainActivity.seconds < 10) {
             timer+="0";
+        }
+        if(MainActivity.seconds >= 60) {
+            minutes++;
+            timer+="0";
+            seconds= 0;
+            return; // fix this
         }
         timer += String.valueOf(MainActivity.seconds);
         //TextView textView = findViewById(R.id.time);
