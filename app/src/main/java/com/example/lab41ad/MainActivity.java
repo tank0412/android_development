@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClickReset(View view) {
         runnning = true;
         seconds = 0;
+        minutes = 0;
+        hours = 0;
         checkTimer(); // работает и так
 
     }
