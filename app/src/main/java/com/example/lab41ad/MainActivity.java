@@ -24,10 +24,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        seconds = 0;
-        minutes = 0;
-        hours = 0;
         Log.i("Main", "Run app");
+        checkBundle(savedInstanceState);
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt("seconds", seconds);
+        savedInstanceState.putInt("minutes", minutes);
+        savedInstanceState.putInt("hours", hours);
+        savedInstanceState.putBoolean("runnning", runnning);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     public void onClickStart(View view) {
@@ -76,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
             return; // fix this
         }
         timer += String.valueOf(MainActivity.seconds);
-        //TextView textView = findViewById(R.id.time);
-        //textView.setText(timer);
         TextView textView = findViewById(R.id.time);
         textView.setText(timer);
         MainActivity.seconds++;
@@ -103,6 +107,31 @@ public class MainActivity extends AppCompatActivity {
             mHandler.postDelayed(r, 1000);
         } else {
             //Log.i("Main", "Continue for " + MainActivity.runnning);
+        }
+    }
+
+    public void checkBundle(Bundle savedInstanceState) {
+        if(savedInstanceState != null) {
+            if (!savedInstanceState.containsKey("seconds")) {
+
+            } else {
+                seconds = savedInstanceState.getInt("seconds");
+            }
+            if (!savedInstanceState.containsKey("minutes")) {
+
+            } else {
+                seconds = savedInstanceState.getInt("minutes");
+            }
+            if (!savedInstanceState.containsKey("hours")) {
+
+            } else {
+                seconds = savedInstanceState.getInt("hours");
+            }
+        }
+        else {
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
         }
     }
 
