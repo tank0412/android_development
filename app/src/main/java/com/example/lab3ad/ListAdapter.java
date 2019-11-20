@@ -64,6 +64,8 @@ public class ListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         View v = holder.itemView;
         ImageView image = v.findViewById(R.id.photo);
+        //image.setScaleType(ImageView.ScaleType.FIT_XY);
+        image.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         Picasso.get().load(imagesUrlList.get(position)).into(image);
         final int position2 = position;
 
