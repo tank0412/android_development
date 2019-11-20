@@ -43,11 +43,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickReset(View view) {
-        runnning = true;
+        runnning = false;
         seconds = 0;
         minutes = 0;
         hours = 0;
-        checkTimer(); // работает и так
+        runnning = true;
+        //checkTimer(); // работает и так
 
     }
     public void runTimer() {
