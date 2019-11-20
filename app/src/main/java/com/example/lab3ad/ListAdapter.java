@@ -17,13 +17,12 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter {
-    /*
-    private List<String> imagesList;
 
-    public ListAdapter(Context context, List<String> imagesList) {
-        this.imagesList = imagesList;
+    private List<String> imagesUrlList;
+
+    public ListAdapter(List<String> imagesUrlList) {
+        this.imagesUrlList = imagesUrlList;
     }
-     */
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, View.OnClickListener {
 
@@ -57,11 +56,11 @@ public class ListAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         View v = holder.itemView;
         ImageView image = v.findViewById(R.id.photo);
-        Picasso.get().load("https://i.imgur.com/2KxoIsa.jpg").into(image);
+        Picasso.get().load(imagesUrlList.get(position)).into(image);
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return imagesUrlList.size();
     }
 }

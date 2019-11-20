@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -19,8 +22,23 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this); // similar to listView
         recyclerView.setLayoutManager(layoutManager);
 
-        ListAdapter listAdapter = new ListAdapter();
+        ListAdapter listAdapter = new ListAdapter(prepareData());
         recyclerView.setAdapter(listAdapter);
 
+    }
+    private List<String> prepareData() {
+        List<String> imagesUrlList = new ArrayList<>();
+        imagesUrlList.add("https://i.imgur.com/2KxoIsa.jpg");
+        imagesUrlList.add("https://i.imgur.com/EZHXbA0.jpg");
+        imagesUrlList.add("https://i.imgur.com/qb7Ev7A.jpg");
+        imagesUrlList.add("https://i.imgur.com/ZtXXAwX.jpg");
+        imagesUrlList.add("https://i.imgur.com/lrE9vha.jpg");
+        imagesUrlList.add("https://i.imgur.com/S66rx9n.jpg");
+        imagesUrlList.add("https://i.imgur.com/KaSkWef.jpg");
+        imagesUrlList.add("https://i.imgur.com/jp5z1s0.jpg");
+        imagesUrlList.add("https://i.imgur.com/iLNrl9Z.jpg");
+        imagesUrlList.add("https://i.imgur.com/uXbb81d.jpg");
+        imagesUrlList.add("https://i.imgur.com/92mT0BB.jpg");
+        return  imagesUrlList;
     }
 }
