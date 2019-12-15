@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Lab5AD</string>
-    <string name="drawer_item_home">Home</string>
-    <string name="drawer_item_gamepad">Gamepad</string>
-    <string name="drawer_item_eye">Eye</string>
-    <string name="drawer_item_cog">Cog</string>
-    <string name="drawer_item_github">Github</string>
+    <string name="drawer_item_sample1">Sample1</string>
+    <string name="drawer_item_sample2">Sample2</string>
+    <string name="drawer_item_sample3">Sample3</string>
+    <string name="drawer_item_sample4">Sample4</string>
+    <string name="drawer_item_sample5">Sample5</string>
+    <string name="drawer_item_not_sample">Not Sample</string>
 </resources>
