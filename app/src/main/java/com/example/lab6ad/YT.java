@@ -23,7 +23,7 @@ public class YT extends YouTubeBaseActivity implements YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_video);
 
-        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        //youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
         youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
     }
 
