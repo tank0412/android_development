@@ -1,4 +1,4 @@
-package com.example.lab6ad.ui.tools;
+package com.example.lab6ad.ui.playlist;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -46,7 +46,7 @@ public class PlaylistRecicleViewAdapter extends RecyclerView.Adapter<PlaylistRec
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String id = mData.get(position);
-        holder.myTextView.setText(id);
+        //holder.myTextView.setText(id);
         Log.v("onBindViewHolder",id );
 
 
@@ -92,7 +92,7 @@ public class PlaylistRecicleViewAdapter extends RecyclerView.Adapter<PlaylistRec
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.tvAnimalName);
+            //myTextView = itemView.findViewById(R.id.tvAnimalName);
             itemView.setOnClickListener(this);
         }
 
