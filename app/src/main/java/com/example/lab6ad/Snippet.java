@@ -5,22 +5,25 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class Items {
-    @SerializedName("id")
+public class Snippet {
+
+    @SerializedName("resourceId")
     @Expose
-    private String id;
+    public ResourceId resourceId;
+
+
+    @SerializedName("publishedAt")
+    @Expose
+    private String publishedAt;
 
     public String getId() {
-        return id;
+        return publishedAt;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.publishedAt = id;
     }
 
-    @SerializedName("snippet")
-    @Expose
-    public Snippet snippet;
 
 
 

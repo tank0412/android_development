@@ -35,6 +35,8 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
 
     PlaylistRecicleViewAdapter adapter;
 
+    ArrayList<String> videoIDs = new ArrayList<>();
+
     String PLAYLIST_ID = "PLWz5rJ2EKKc9kHSZiYmumYM6SdhG9AxVN";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,6 +46,7 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
         playListViewModel =
                 ViewModelProviders.of(this).get(PlayListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_playlist, container, false);
+        /*
         final TextView textView = root.findViewById(R.id.text_tools);
         playListViewModel.getText().observe(this, new Observer<String>() {
             @Override
@@ -52,40 +55,63 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
             }
         });
 
-        // data to populate the RecyclerView with
-        final ArrayList<String> videoIDs = new ArrayList<>();
+         */
 
-        final TextView textView2 = root.findViewById(R.id.text_tools);
+        // data to populate the RecyclerView with
+
+        //final TextView textView2 = root.findViewById(R.id.text_tools);
+        final View root2 = root;
         networkService.getJSONApi()
                 .getPlaylistWithIDAndKey(PLAYLIST_ID, Config.YOUTUBE_API_KEY)
                 .enqueue(new Callback<Post>() {
                     @Override
                     public void onResponse(@NonNull Call<Post> call, @NonNull Response<Post> response) {
+
                         Post post = response.body();
 
                         ArrayList<Items> items = post.getItems();
+                        ArrayList<String> IDs = new ArrayList<>();
 
-                        for( Items item : items ) {
-                            textView2.append(item.getId() + "\n");
-                            videoIDs.add(item.getId());
+                        for(Items item : items) {
+                            Log.v("onResponse1", item.getId());
+                            if(item.snippet.getId() != null)
+                            Log.v("onResponse2", item.snippet.getId());
+                            if(item.snippet.resourceId.getId() != null) {
+                                Log.v("onResponse3", item.snippet.resourceId.getId());
+                                videoIDs.add(item.snippet.resourceId.getId());
+                            }
                         }
+/*
+                        for( Items item : items ) {
+                            ArrayList<Snippet> snipeta = item.getSnippet();
+                            for(Snippet snipet : snipeta) {
+                                ArrayList<ResourceId> resourceIds = snipet.getResourceId();
+                                for(ResourceId resourceId: resourceIds) {
+                                    IDs.add(resourceId.getId());
+                                    Log.v("onBindViewHolder", resourceId.getId());
+                                }
+                            }
+                            //textView2.append(item.getId() + "\n");
+                            //videoIDs.add(item.getId());
+                        }
+                        */
+
+                            RecyclerView recyclerView = root2.findViewById(R.id.rvAnimals);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                            adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getChildFragmentManager());
+                            //adapter.setClickListener(this);
+                            recyclerView.setAdapter(adapter);
+
                     }
 
                     @Override
                     public void onFailure(@NonNull Call<Post> call, @NonNull Throwable t) {
 
-                        textView2.append("Error occurred while getting request!");
+                        //textView2.append("Error occurred while getting request!");
                         t.printStackTrace();
                     }
                 });
 
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = root.findViewById(R.id.rvAnimals);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
 
         return root;
     }

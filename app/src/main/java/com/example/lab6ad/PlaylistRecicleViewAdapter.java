@@ -2,12 +2,20 @@ package com.example.lab6ad;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lab6ad.ui.Config;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import java.util.List;
 
@@ -16,11 +24,15 @@ public class PlaylistRecicleViewAdapter extends RecyclerView.Adapter<PlaylistRec
     private List<String> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private YouTubePlayer YPlayer;
+    private FragmentManager mFM;
+
 
     // data is passed into the constructor
-    public PlaylistRecicleViewAdapter(Context context, List<String> data) {
+    public PlaylistRecicleViewAdapter(Context context, List<String> data, FragmentManager fragmentManager) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.mFM = fragmentManager;
     }
 
     // inflates the row layout from xml when needed
@@ -33,8 +45,38 @@ public class PlaylistRecicleViewAdapter extends RecyclerView.Adapter<PlaylistRec
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        String id = mData.get(position);
+        holder.myTextView.setText(id);
+        Log.v("onBindViewHolder",id );
+
+
+        YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
+        FragmentTransaction transaction = mFM.beginTransaction();
+        transaction.replace(R.id.fl_youtube, youTubePlayerFragment).commit();
+
+        final String mID = id;
+
+        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
+
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider arg0, YouTubePlayer youTubePlayer, boolean b) {
+                if (!b) {
+                    YPlayer = youTubePlayer;
+                    YPlayer.setFullscreen(false);
+                    //YPlayer.loadVideo("fhWaJi1Hsfo");
+                    YPlayer.loadVideo(mID);
+                    YPlayer.play();
+                }
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider arg0, YouTubeInitializationResult arg1) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
     }
 
     // total number of rows
