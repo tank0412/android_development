@@ -17,6 +17,14 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_playlist" />
         <item
+            android:id="@+id/nav_playlist2"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_playlist" />
+        <item
+            android:id="@+id/nav_playlist3"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_playlist" />
+        <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_about" />

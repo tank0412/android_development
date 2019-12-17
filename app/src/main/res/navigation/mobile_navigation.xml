@@ -23,6 +23,18 @@
         tools:layout="@layout/fragment_playlist" />
 
     <fragment
+        android:id="@+id/nav_playlist2"
+        android:name="com.example.lab6ad.ui.playlist.SecondPlayListFragment"
+        android:label="@string/menu_playlist"
+        tools:layout="@layout/fragment_playlist" />
+
+    <fragment
+        android:id="@+id/nav_playlist3"
+        android:name="com.example.lab6ad.ui.playlist.ThirdPlayListFragment"
+        android:label="@string/menu_playlist"
+        tools:layout="@layout/fragment_playlist" />
+
+    <fragment
         android:id="@+id/nav_about"
         android:name="com.example.lab6ad.ui.about.AboutFragment"
         android:label="@string/menu_about"
