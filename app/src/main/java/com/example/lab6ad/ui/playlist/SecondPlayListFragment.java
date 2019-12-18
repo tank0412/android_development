@@ -56,6 +56,8 @@ public class SecondPlayListFragment extends Fragment implements PlaylistRecicleV
                         ArrayList<Items> items = post.getItems();
                         ArrayList<String> IDs = new ArrayList<>();
 
+                        int countIds = 0;
+
                         for(Items item : items) {
                             Log.v("onResponse1", item.getId());
                             if(item.snippet.getId() != null)
@@ -63,12 +65,13 @@ public class SecondPlayListFragment extends Fragment implements PlaylistRecicleV
                             if(item.snippet.resourceId.getId() != null) {
                                 Log.v("onResponse3", item.snippet.resourceId.getId());
                                 videoIDs.add(item.snippet.resourceId.getId());
+                                countIds++;
                             }
                         }
 
                         RecyclerView recyclerView = root2.findViewById(R.id.rvAnimals);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getChildFragmentManager());
+                        adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getLifecycle(), getContext(), countIds);
                         //adapter.setClickListener(this);
                         recyclerView.setAdapter(adapter);
 

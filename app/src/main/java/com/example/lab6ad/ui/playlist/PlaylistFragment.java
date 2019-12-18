@@ -10,8 +10,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.lab6ad.Items;
 import com.example.lab6ad.NetworkService;
@@ -68,6 +70,7 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
 
                         ArrayList<Items> items = post.getItems();
                         ArrayList<String> IDs = new ArrayList<>();
+                        int countIds = 0;
 
                         for(Items item : items) {
                             Log.v("onResponse1", item.getId());
@@ -76,6 +79,7 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
                             if(item.snippet.resourceId.getId() != null) {
                                 Log.v("onResponse3", item.snippet.resourceId.getId());
                                 videoIDs.add(item.snippet.resourceId.getId());
+                                countIds++;
                             }
                         }
 /*
@@ -94,8 +98,8 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
                         */
 
                             RecyclerView recyclerView = root2.findViewById(R.id.rvAnimals);
-                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                            adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getChildFragmentManager());
+                            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), GridLayoutManager.VERTICAL));
+                            adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getLifecycle(), getContext(), countIds);
                             //adapter.setClickListener(this);
                             recyclerView.setAdapter(adapter);
 
