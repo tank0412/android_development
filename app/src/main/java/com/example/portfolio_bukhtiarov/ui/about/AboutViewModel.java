@@ -10,7 +10,7 @@ public class AboutViewModel extends ViewModel {
 
     public AboutViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Я студент кафедры Информатики и Прикладной Математики. Моя программа: 'Разработка программно=информационных систем.'");
+        mText.setValue("Я студент кафедры Информатики и Прикладной Математики. Моя программа: 'Разработка программно-информационных систем.'");
     }
 
     public LiveData<String> getText() {

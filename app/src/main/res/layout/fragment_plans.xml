@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/text_share"
-        android:layout_width="400dp"
-        android:layout_height="0dp"
+        android:layout_width="382dp"
+        android:layout_height="151dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="8dp"
