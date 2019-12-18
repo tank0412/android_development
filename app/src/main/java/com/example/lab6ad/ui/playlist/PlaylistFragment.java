@@ -11,9 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.lab6ad.Items;
 import com.example.lab6ad.NetworkService;
@@ -45,20 +43,6 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
         playListViewModel =
                 ViewModelProviders.of(this).get(PlayListViewModel.class);
         View root = inflater.inflate(R.layout.fragment_playlist, container, false);
-        /*
-        final TextView textView = root.findViewById(R.id.text_tools);
-        playListViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-
-         */
-
-        // data to populate the RecyclerView with
-
-        //final TextView textView2 = root.findViewById(R.id.text_tools);
         final View root2 = root;
         networkService.getJSONApi()
                 .getPlaylistWithIDAndKey(PLAYLIST_ID, Config.YOUTUBE_API_KEY)
@@ -82,20 +66,6 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
                                 countIds++;
                             }
                         }
-/*
-                        for( Items item : items ) {
-                            ArrayList<Snippet> snipeta = item.getSnippet();
-                            for(Snippet snipet : snipeta) {
-                                ArrayList<ResourceId> resourceIds = snipet.getResourceId();
-                                for(ResourceId resourceId: resourceIds) {
-                                    IDs.add(resourceId.getId());
-                                    Log.v("onBindViewHolder", resourceId.getId());
-                                }
-                            }
-                            //textView2.append(item.getId() + "\n");
-                            //videoIDs.add(item.getId());
-                        }
-                        */
 
                             RecyclerView recyclerView = root2.findViewById(R.id.rvAnimals);
                             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), GridLayoutManager.VERTICAL));
@@ -108,7 +78,6 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
                     @Override
                     public void onFailure(@NonNull Call<Post> call, @NonNull Throwable t) {
 
-                        //textView2.append("Error occurred while getting request!");
                         t.printStackTrace();
                     }
                 });
