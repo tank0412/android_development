@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.portfolio_bukhtiarov.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.example.portfolio_bukhtiarov.ui.about.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/nav_study"
+        android:name="com.example.portfolio_bukhtiarov.ui.study.StudyFragment"
+        android:label="@string/menu_study"
+        tools:layout="@layout/fragment_study" />
+
+    <fragment
+        android:id="@+id/nav_vkr"
+        android:name="com.example.portfolio_bukhtiarov.ui.vkr.VKRFragment"
+        android:label="@string/menu_vkr"
+        tools:layout="@layout/fragment_vkr" />
+
+    <fragment
+        android:id="@+id/nav_plans"
+        android:name="com.example.portfolio_bukhtiarov.ui.plans.PlansFragment"
+        android:label="@string/menu_plans"
+        tools:layout="@layout/fragment_plans" />
+
+    <fragment
+        android:id="@+id/nav_contacts"
+        android:name="com.example.portfolio_bukhtiarov.ui.contacts.ContactsFragment"
+        android:label="@string/menu_contacts"
+        tools:layout="@layout/fragment_send" />
+</navigation>
