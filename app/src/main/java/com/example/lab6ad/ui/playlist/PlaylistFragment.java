@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -66,10 +67,10 @@ public class PlaylistFragment extends Fragment implements PlaylistRecicleViewAda
                                 countIds++;
                             }
                         }
-
+                            ProgressBar progressBar = (ProgressBar) root2.findViewById(R.id.progressbar);
                             RecyclerView recyclerView = root2.findViewById(R.id.rvAnimals);
                             recyclerView.setLayoutManager(new GridLayoutManager(getContext(), GridLayoutManager.VERTICAL));
-                            adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getLifecycle(), getContext(), countIds);
+                            adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getLifecycle(), getContext(), countIds, progressBar);
                             //adapter.setClickListener(this);
                             recyclerView.setAdapter(adapter);
 

@@ -14,17 +14,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.List;
 
@@ -37,15 +30,17 @@ public class PlaylistRecicleViewAdapter extends RecyclerView.Adapter<PlaylistRec
     private WebView webView;
     private Context context;
     private int countIds;
+    private ProgressBar progressBar;
 
 
     // data is passed into the constructor
-    public PlaylistRecicleViewAdapter(Context context, List<String> data, Lifecycle lifecycle ,Context mycontext, int countIds) {
+    public PlaylistRecicleViewAdapter(Context context, List<String> data, Lifecycle lifecycle ,Context mycontext, int countIds, ProgressBar progressBar) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.lifecycle = lifecycle;
         this.context = mycontext;
         this.countIds = countIds;
+        this.progressBar = progressBar;
     }
 
     // inflates the row layout from xml when needed
@@ -58,6 +53,10 @@ public class PlaylistRecicleViewAdapter extends RecyclerView.Adapter<PlaylistRec
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
+
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+
         if(countIds <= 0) {
             return;
         }
@@ -83,6 +82,8 @@ public class PlaylistRecicleViewAdapter extends RecyclerView.Adapter<PlaylistRec
         wv.getSettings().setSupportMultipleWindows(true);
         wv.loadDataWithBaseURL("", html , "text/html",  "UTF-8", "");
         wv.setWebChromeClient(new MyWebClient(context, wv));
+
+        progressBar.setVisibility(ProgressBar.GONE);
     }
 
     // total number of rows
@@ -100,7 +101,7 @@ public class PlaylistRecicleViewAdapter extends RecyclerView.Adapter<PlaylistRec
             super(itemView);
             Log.v("ViewHolderCalled","0" );
             frameLayout = itemView.findViewById(R.id.webView);
-            webView = itemView.findViewById(R.id.webView);;
+            webView = itemView.findViewById(R.id.webView);
             itemView.setOnClickListener(this);
         }
 

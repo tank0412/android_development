@@ -5,11 +5,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,9 +71,10 @@ public class ThirdPlayListFragment extends Fragment implements PlaylistRecicleVi
                             }
                         }
 
+                        ProgressBar progressBar = (ProgressBar) root2.findViewById(R.id.progressbar);
                         RecyclerView recyclerView = root2.findViewById(R.id.rvAnimals);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getLifecycle(), getContext(), countIds);
+                        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), GridLayoutManager.VERTICAL));
+                        adapter = new PlaylistRecicleViewAdapter(getContext(), videoIDs, getLifecycle(), getContext(), countIds, progressBar);
                         //adapter.setClickListener(this);
                         recyclerView.setAdapter(adapter);
 
