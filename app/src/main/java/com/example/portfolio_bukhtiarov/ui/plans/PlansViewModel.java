@@ -10,7 +10,7 @@ public class PlansViewModel extends ViewModel {
 
     public PlansViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Я планирую пройти обучение в компании EPAM в течении 3 месяцев и получить аозможность пройти стажировку с последующим трудоустройством.");
+        mText.setValue("Я планирую пройти обучение в компании EPAM в течении 3 месяцев и получить возможность пройти стажировку с последующим трудоустройством.");
     }
 
     public LiveData<String> getText() {
