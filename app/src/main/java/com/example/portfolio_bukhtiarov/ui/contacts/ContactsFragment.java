@@ -22,7 +22,7 @@ public class ContactsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         sendViewModel =
                 ViewModelProviders.of(this).get(ContactsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
+        View root = inflater.inflate(R.layout.fragment_contacts, container, false);
         final TextView textView = root.findViewById(R.id.text_send);
         sendViewModel.getText().observe(this, new Observer<String>() {
             @Override

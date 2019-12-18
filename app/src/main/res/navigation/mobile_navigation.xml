@@ -39,5 +39,5 @@
         android:id="@+id/nav_contacts"
         android:name="com.example.portfolio_bukhtiarov.ui.contacts.ContactsFragment"
         android:label="@string/menu_contacts"
-        tools:layout="@layout/fragment_send" />
+        tools:layout="@layout/fragment_contacts" />
 </navigation>
